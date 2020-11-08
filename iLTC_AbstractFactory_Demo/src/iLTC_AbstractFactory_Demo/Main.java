@@ -8,23 +8,19 @@ import iLTC_AbstractFactory_Demo_Factories.ItalianMenuFactory;
 import iLTC_AbstractFactory_Demo_Factories.KidsMenuFactory;
 import iLTC_AbstractFactory_Demo_Factories.VegetarianMenuFactory;
 
-public class Restaurant {
+public class Main {
 
 	static public void main (String args[]) {
-		Restaurant restaurant = new Restaurant();
+		
+		showMenu();
 		Guest guest=new Guest();
-		
-		restaurant.showMenu();
-		MenuFactory menuFactory = restaurant.createFactory();
-		
-		System.out.println(guest.drinkDrink(menuFactory.createDrink()));
-		System.out.println(guest.eatMainCourse(menuFactory.createMainCourse()));
-		System.out.println(guest.eatSideDish(menuFactory.createSideDish()));
-		System.out.println(guest.eatDessert(menuFactory.createDessert()));
+		MenuFactory menuFactory = createFactory();
+		Restaurant restaurant = new Restaurant(menuFactory, guest);
+		restaurant.serveMenuToGuest();
 		
 	}
 
-	public MenuFactory createFactory() {
+	public static MenuFactory createFactory() {
 		
 		MenuFactory menuFactory=null;
 		int choice;
@@ -56,12 +52,12 @@ public class Restaurant {
 		return menuFactory;	
 	}
 	
-	public void showMenu() {
-		System.out.println("Guest comes into the restaurant and chooses (Select):");
-		System.out.println("1-Burger Menu");
-		System.out.println("2-Italian Menu");
-		System.out.println("3-Kids Menu");
-		System.out.println("4-Vegetarian Menu");
+	public static void showMenu() {
+		System.out.println("In which restaurant should the guest go? Please select.");
+		System.out.println("1-Burger restaurant");
+		System.out.println("2-Italian restaurant");
+		System.out.println("3-Kids restaurants");
+		System.out.println("4-Vegetarian restaurant");
 	}
 
 
